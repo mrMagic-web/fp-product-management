@@ -9,7 +9,6 @@ class Inventory extends React.Component {
     this.renderLogin = this.renderLogin.bind(this);
     this.authenticate = this.authenticate.bind(this);
     this.logout = this.logout.bind(this);
-    // this.authHandler = this.authHandler.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.state = {
       uid: null,
@@ -23,6 +22,7 @@ class Inventory extends React.Component {
         this.authHandler(null, { user });
       }
     });
+
   }
 
   handleChange(e, key) {
@@ -33,6 +33,17 @@ class Inventory extends React.Component {
       [e.target.name]: e.target.value
     }
     this.props.updateProduct(key, updatedProduct);
+  }
+
+  handleCheckboxChange(e, key) {
+    console.log(e)
+    // const target = event.target;
+    // const value = target.type === 'checkbox' ? target.checked : target.value;
+    // const name = target.name;
+
+    // this.setState({
+    //   [event.target.name]: value
+    // });
   }
 
   authenticate(provider) {
@@ -59,8 +70,9 @@ class Inventory extends React.Component {
 
   renderInventory(key) {
     const product = this.props.products[key];
+
     return (
-      <div className="fish-edit" key={key}>
+      <div className="product-edit" key={key}>
         {/* <input type="text" name="name" value={product.name.dk} placeholder="Product Name DK" onChange={(e) => this.handleChange(e, key)} />
         <input type="text" name="name" value={product.name.pl} placeholder="Product Name PL" onChange={(e) => this.handleChange(e, key)} />
         <input type="text" name="name" value={product.name.en} placeholder="Product Name EN" onChange={(e) => this.handleChange(e, key)} /> */}
@@ -72,9 +84,11 @@ class Inventory extends React.Component {
 
         {/* <textarea type="text" name="desc" value={product.desc.dk} placeholder="Product Desc DK" onChange={(e) => this.handleChange(e, key)}></textarea> */}
         {/* <textarea type="text" name="desc" value={product.desc.pl} placeholder="Product Desc PL" onChange={(e) => this.handleChange(e, key)}></textarea> */}
-        {/* <textarea type="text" name="desc" value={product.desc.eb} placeholder="Product Desc EN" onChange={(e) => this.handleChange(e, key)}></textarea> */}
+        {/* <textarea type="text" name="desc" value={product.desc.en} placeholder="Product Desc EN" onChange={(e) => this.handleChange(e, key)}></textarea> */}
         {/* <input type="text" name="image" value={product.image} placeholder="Product Image" onChange={(e) => this.handleChange(e, key)}/> */}
-        <div><pre>{JSON.stringify(product)}</pre></div>
+        <input name="isWhite" type="checkbox" checked={product.color.white} onChange={(e) => this.handleCheckboxChange(e, key)} />
+        <input name="isGray" type="checkbox" checked={product.color.gray} onChange={(e) => this.handleCheckboxChange(e, key)} /> 
+        <small><pre>{JSON.stringify(product)}</pre></small>
         <button onClick={() => this.props.removeProduct(key)}>Remove Product</button>
       </div>
     )
@@ -101,7 +115,7 @@ class Inventory extends React.Component {
     return (
       <div>
         <h2>Inventory</h2>
-        {logout}
+        {/* {logout} */}
         {Object.keys(this.props.products).map(this.renderInventory)}
         <AddProductForm addProduct={this.props.addProduct}/>
       </div>

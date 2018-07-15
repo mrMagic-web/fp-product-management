@@ -1,5 +1,4 @@
 import React from 'react';
-import { formatPrice } from '../helpers';
 
 class Product extends React.Component {
   render() {
@@ -7,7 +6,7 @@ class Product extends React.Component {
     return (
       <li className="menu-product">
         
-          {details.name.dk}
+          {JSON.stringify(details.name)}
          
       </li>
     )

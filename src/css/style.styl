@@ -11,9 +11,8 @@ header.top
     justify-content: center;
 
 .product-page
-  padding-top 1rem
+  padding 1rem
   display flex
-  height 100vh
   margin 0 auto
   background white
   & > *
@@ -66,29 +65,22 @@ ul.order
         display inline-block
         // transition all 0.5s
 
-.fish-edit
+.product-edit
   margin-bottom 20px
   border 2px solid black
   overflow hidden
   display flex
   flex-wrap wrap
   input, textarea, select
-    width 33.33%
     padding 10px
     line-height 1
     font-size 1.2rem
     border 0
-    border-bottom 1px solid black
-    border-right 1px solid black
-    appearance none
     border-radius 0
-    background white
     &:focus
       outline 0
       background lighten(orange, 85%)
   textarea
-    width 100%
-  input:last-of-type
     width 100%
   button
     width 100%
